@@ -1,0 +1,14 @@
+2/11/68
+Error.captureStackTrace คืออะไร?
+- เป็น method พิเศษใน node.js (V8 Engine) ที่ใช้จัดการ stack trace
+- ช่วยให้เราสร้าง custom error class ที่มี stack trace ที่สะอาดและอ่านง่ายขึ้น
+- ซ่อน constructor ของ error ออกจาก stack trace เพื่อให้ debug ง่าย
+
+ข้อดีของ Error.captureStackTrace
+- Stack trace สะอาดกว่า ไม่แสดง constructor ของ error class
+- Debug ได้ง่ายขึ้น เห็นแค่จุดที่ throw error จริงๆ
+- สร้าง error handling ได้ง่ายขึ้น
+
+ข้อควรระวัง
+- ใช้ได้แค่ใน V8 Engine (Node.js, Chrome)
+- ควรเช็คว่ามี method ให้ใช้จริงๆ ก่อนด้วย
