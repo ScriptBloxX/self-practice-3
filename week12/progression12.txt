@@ -1,0 +1,14 @@
+9/11/2568
+(ใช้ mock api จาก https://jsonplaceholder.typicode.com/)
+Fetch API คืออะไร?
+- เป็น API สำหรับเรียกข้อมูลจาก server ผ่าน HTTP requests
+- ใช้ promise และรองรับ async/await
+
+สิ่งที่ได้รู้: Fetch ไม่ throw error เมื่อได้ HTTP error status!
+- แม้ว่า server จะ return 404 หรือ 500, fetch จะไม่ throw error เพราะมันนับว่า request สำเร็จแล้ว เนื่องจากมีการตอบกลับ ซึ่งต่างจาก 
+axios หรือ XMLHttpRequest ที่จะ throw error อัตโนมัติ
+- ต้องเช็ค response.ok หรือ response.status ด้วยตัวเอง
+
+response.ok
+- เป็น property ที่ return true เมื่อ status code อยู่ในช่วง 200-299
+- return false เมื่อ status เป็น 404, 500, หรือ status code อื่นๆ ที่ไม่ใช่ 2xx
