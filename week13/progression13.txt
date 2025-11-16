@@ -1,0 +1,37 @@
+16/11/2568
+
+วันนี้เป็นการเรียนรู้เกี่ยวกับ AbortController ที่ส่วนตัวแล้วไม่ค่อยจะได้ใช้
+AbortController คืออะไร?
+- เป็น API ที่ใช้ cancel asynchronous operations
+- ทำงานได้กับ fetch, addEventListener, และ APIs อื่นๆ
+- มี property signal ที่ใช้ส่งสัญญาณการยกเลิก
+- มี method abort() ที่เรียกเพื่อยกเลิกการทำงาน
+
+โครงสร้างพื้นฐานของ AbortController
+- สร้าง: const controller = new AbortController()
+- ใช้งาน: controller.signal (ส่งให้ APIs ที่รองรับ)
+- ยกเลิก: controller.abort() (เรียกเพื่อหยุดการทำงาน)
+- เมื่อยกเลิกจะเกิด AbortError ต้องจัดการใน catch
+
+การใช้กับ Fetch API
+- ส่ง signal ไปกับ fetch: fetch(url, { signal: controller.signal })
+- เมื่อเรียก controller.abort() จะยกเลิก fetch ทันที
+- catch จะได้ error ที่ error.name === 'AbortError'
+- ควรจะแยก handle AbortError จาก error อื่นๆ
+
+การตั้ง Timeout ด้วย AbortController
+- ใช้ setTimeout(() => controller.abort(), timeout)
+- เมื่อหมดเวลา setTimeout จะเรียก abort() อัตโนมัติ
+- ถ้า fetch เสร็จก่อนหมดเวลา ต้อง clearTimeout()
+- ป้องกันการรอนานเกินไป (UX ดีขึ้น)
+
+Use Cases ที่เจอบ่อย
+- ยกเลิก request เมื่อ user ไปหน้าอื่น
+- ยกเลิก request เก่าเมื่อมี request ใหม่ (แบบว่า กำลังค้นหาอะไรสักอย่าง แล้วมันใช้เวลา ซึ่งยังไม่เสร็จแล้ว user เปลี่ยนใจ search อย่างอื่นแทน)
+- ตั้ง timeout เพื่อป้องกันรอนานเกินไป
+- ให้ user กด cancel button เพื่อหยุดการทำงาน
+
+สิ่งที่ได้รู้เพิ่ม
+- รองรับใน Node.js version 15 ขึ้นไป
+- การ abort จะ throw AbortError เสมอ ต้อง catch
+- browsers ต้องรองรับด้วย
