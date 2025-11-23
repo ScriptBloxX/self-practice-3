@@ -1,0 +1,31 @@
+23/11/2568
+
+Promise คืออะไร?
+- เป็น object ที่แทนค่าของการทำงานแบบ asynchronous
+- มี 3 status: pending, fulfilled, rejected
+- ใช้แทน callback hell ได้ทำให้ code อ่านง่ายขึ้น
+- สามารถ chain ได้ด้วย .then() และ .catch()
+
+Promise States
+- Pending: กำลังรอ ยังไม่เสร็จ
+- Fulfilled: สำเร็จแล้ว (resolved) ได้ค่ากลับมา
+- Rejected: ไม่สำเร็จ (rejected) เกิด error
+- เปลี่ยนสถานะได้แค่ครั้งเดียว ไม่สามารถเปลี่ยนกลับได้
+
+การสร้าง Promise
+- ใช้ new Promise((resolve, reject) => {})
+- resolve(value) เมื่อทำงานสำเร็จ
+- reject(error) เมื่อเกิดข้อผิดพลาด
+- code ภายใน Promise ทำงานทันทีเมื่อสร้าง
+
+การใช้งาน Promise
+- .then(callback) รับค่าเมื่อ resolve
+- .catch(callback) จัดการ error เมื่อ reject
+- .finally(callback) ทำงานเสมอไม่ว่าจะสำเร็จหรือล้มเหลว
+- ต้องมี .catch() เสมอเพื่อป้องกัน unhandled rejection
+
+Promise Chaining
+- สามารถต่อ .then() ได้หลายตัว
+- แต่ละ .then() ต้อง return Promise หรือค่าเพื่อส่งต่อ
+- ช่วยหลีกเลี่ยง callback hell
+- ถ้าไม่ return จะได้ undefined ใน .then() แทน
