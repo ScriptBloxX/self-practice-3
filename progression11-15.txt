@@ -1,0 +1,41 @@
+Week 11-15
+
+สิ่งที่ได้เรียนรู้ & ทบทวน
+- captureStackTrace
+- Fetch API
+- AbortController
+- Promise Fundamentals
+- Datetime Format
+
+Week 11: Error.captureStackTrace
+- สร้าง custom error class ที่มี stack trace ที่ช่วยให้อ่าน / debug ได้ง่ายขึ้น
+- เปรียบเทียบ SimpleError (ไม่ใช้ captureStackTrace) กับ APIError (ใช้)
+- APIError มี properties เพิ่ม: statusCode, timestamp
+- Error.captureStackTrace(this, this.constructor) ซ่อน constructor จาก stack trace
+
+Week 12: Fetch API
+- call API และจัดการ error ที่ fetch ไม่ throw ให้
+- Fetch ไม่ throw error เมื่อได้ 404, 500
+- ต้องเช็ค response.ok เอง
+- ถ้าไม่ ok ให้ throw Error ด้วยตัวเอง
+
+Week 13: AbortController
+- cancel fetch request ด้วย timeout
+- สร้าง AbortController
+- setTimeout เรียก controller.abort() เมื่อหมดเวลา
+- ส่ง signal ไปหา fetch
+- clearTimeout เมื่อสำเร็จก่อนหมดเวลา
+- จับ AbortError แยกจาก error อื่น
+
+Week 14: Promise
+- เรียนรู้พื้นฐาน Promise สำหรับ async code
+- สร้าง Promise ด้วย new Promise((resolve, reject) => {})
+- resolve เมื่อสำเร็จ, reject เมื่อไม่สำเร็จ
+- ใช้ .then() รับค่า, .catch() จัดการ error
+
+Week 15: Date Formatting (toLocaleString)
+- แสดงวันที่ตามภาษาและประเทศของ user
+- toLocaleString() / toLocaleDateString() / toLocaleTimeString()
+- custom options: weekday, year, month, day, hour, minute
+- hour12: true/false สำหรับ 12/24 ชั่วโมง
+- navigator.language เช็คภาษาอัตโนมัติ
