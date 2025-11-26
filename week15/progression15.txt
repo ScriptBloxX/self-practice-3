@@ -1,0 +1,20 @@
+26/11/2568
+toLocaleString() คืออะไร?
+- แสดงวันที่และเวลาตามภาษาและประเทศของผู้ใช้
+- สามารถกำหนด format ได้หลากหลาย
+- เหมาะสำหรับ website ที่มี user หลายประเทศ
+
+3 Methods หลัก
+- toLocaleString() → วันที่และเวลาเต็ม
+- toLocaleDateString() → เฉพาะวันที่
+- toLocaleTimeString() → เฉพาะเวลา
+
+Auto-Detech Language
+- ใช้ navigator.language เพื่อดูภาษาของ browser
+- แสดงวันที่ตามภาษาผู้ใช้โดยอัตโนมัติ
+
+ข้อดีของ toLocaleString()
+- ไม่ต้องเขียน format function เอง
+- รองรับหลายภาษาอัตโนมัติ
+- แสดงวันที่ตามมาตรฐานของแต่ละประเทศ
+- ปรับตาม timezone และ locale ของ user
